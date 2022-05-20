@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/20 14:52:53 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/20 16:05:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,17 @@ typedef struct s_arg
 	unsigned int	end_after_eat;
 }				t_arg;
 
+typedef struct s_philo
+{
+	unsigned int	last_eaten_at;
+	bool			fork;
+	
+}				t_philo;
+
 typedef struct s_all
 {
 	t_arg	arg;
+	t_philo	*philo;
 }				t_all;
 
 t_all	*all(void);
