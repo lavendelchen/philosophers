@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/21 14:42:27 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/21 14:47:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ typedef struct s_time
 typedef struct s_philo
 {
 	unsigned int	last_eaten_at;
+	bool			fork;
+	bool			*foreign_fork;
 }				t_philo;
 
 typedef struct s_philos
 {
 	unsigned int	philo_num;
 	t_philo			*philo;
-	bool			*fork;
 	//mutex			*mutex;
 }				t_philos;
 
