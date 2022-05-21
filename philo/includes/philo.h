@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/20 16:05:28 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/21 14:15:40 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,31 @@
 
 # include "colours.h"
 
-typedef struct s_arg
+typedef struct s_time
 {
-	unsigned int	philos;
 	unsigned int	die;
 	unsigned int	eat;
 	unsigned int	sleep;
-	unsigned int	end_after_eat;
-}				t_arg;
+}				t_time;
 
 typedef struct s_philo
 {
 	unsigned int	last_eaten_at;
-	bool			fork;
-	
 }				t_philo;
+
+typedef struct s_philos
+{
+	unsigned int	philo_num;
+	t_philo			*philo;
+	bool			*fork;
+	//mutex			*mutex;
+}				t_philos;
 
 typedef struct s_all
 {
-	t_arg	arg;
-	t_philo	*philo;
+	t_philos		philos;
+	t_time			time;
+	unsigned int	stop_after_eat;
 }				t_all;
 
 t_all	*all(void);
