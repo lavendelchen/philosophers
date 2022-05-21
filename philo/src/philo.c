@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/21 14:16:41 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/21 14:38:52 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	print_philos(void)
 	unsigned int	i;
 
 	i = 0;
-	while (i < all()->arg.philos)
+	while (i < all()->philos.philo_num)
 	{
-		printf("Philosopher %u has last eaten at %u\n", i + 1, all()->philo[i].last_eaten_at);
+		printf("Philosopher %u has last eaten at %u\n", i + 1, all()->philos.philo[i].last_eaten_at);
 		i++;
 	}
 }
 
 void	free_all(void)
 {
-	free(all()->philo);
+	free(all()->philos.philo);
 }
 
 t_all	*all(void)
@@ -40,13 +40,13 @@ bool	init_philos(void)
 {
 	unsigned int	i;
 
-	all()->philo = malloc(sizeof(t_philo) * (all()->arg.philos + 1));
-	if (all()->philo == NULL)
+	all()->philos.philo = malloc(sizeof(t_philo) * (all()->philos.philo_num + 1));
+	if (all()->philos.philo == NULL)
 		return (true);
 	i = 0;
-	while (i < all()->arg.philos)
+	while (i < all()->philos.philo_num)
 	{
-		all()->philo[i].last_eaten_at = 0;
+		all()->philos.philo[i].last_eaten_at = 0;
 		i++;
 	}
 	return (false);
