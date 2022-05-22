@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:06:09 by shaas             #+#    #+#              #
-#    Updated: 2022/05/20 14:45:58 by shaas            ###   ########.fr        #
+#    Updated: 2022/05/22 20:26:55 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CC_FLAGS	=	-Wall -Wextra -Werror -g -pthread
 DIR_HEADERS =	includes/
 DIR_SRC		=	src/
 DIR_OBJ		=	obj/
-SRC			=	src/philo.c src/parser.c src/utils.c src/error_check.c
+SRC			=	src/philo.c src/parser.c src/utils.c src/error_check.c \
+				src/threads.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 
 all:			$(NAME)

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/21 14:47:17 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/22 20:37:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <pthread.h>
 
 # include "colours.h"
 
@@ -30,21 +31,17 @@ typedef struct s_time
 typedef struct s_philo
 {
 	unsigned int	last_eaten_at;
-	bool			fork;
-	bool			*foreign_fork;
+	pthread_t		thread_id;
+	unsigned int	*left_fork;
+	unsigned int	*right_fork;
 }				t_philo;
-
-typedef struct s_philos
-{
-	unsigned int	philo_num;
-	t_philo			*philo;
-	//mutex			*mutex;
-}				t_philos;
 
 typedef struct s_all
 {
-	t_philos		philos;
 	t_time			time;
+	unsigned int	philo_num;
+	t_philo			*philo;
+	unsigned int	*fork;
 	unsigned int	stop_after_eat;
 }				t_all;
 
@@ -52,6 +49,9 @@ t_all	*all(void);
 
 bool	parser(int argc, char *argv[]);
 bool	error_check(int argc, char *argv[]);
+
+bool	create_threads(void);
+bool	join_threads(void);
 
 /*-- UTILS ---*/
 
