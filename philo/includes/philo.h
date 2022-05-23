@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/22 20:37:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/23 19:19:31 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include <limits.h>
 # include <stdbool.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 # include "colours.h"
 
@@ -32,8 +34,8 @@ typedef struct s_philo
 {
 	unsigned int	last_eaten_at;
 	pthread_t		thread_id;
-	unsigned int	*left_fork;
-	unsigned int	*right_fork;
+	pthread_mutex_t	*left_fork;//do we need?
+	pthread_mutex_t	*right_fork;//do we need?
 }				t_philo;
 
 typedef struct s_all
@@ -41,8 +43,9 @@ typedef struct s_all
 	t_time			time;
 	unsigned int	philo_num;
 	t_philo			*philo;
-	unsigned int	*fork;
+	pthread_mutex_t	*fork;
 	unsigned int	stop_after_eat;
+	pthread_mutex_t	print_mutex;
 }				t_all;
 
 t_all	*all(void);
@@ -52,6 +55,8 @@ bool	error_check(int argc, char *argv[]);
 
 bool	create_threads(void);
 bool	join_threads(void);
+
+unsigned long	get_curr_time(void);
 
 /*-- UTILS ---*/
 

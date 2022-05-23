@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/22 21:04:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/23 19:35:24 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	print_data(void)
 
 	i = 0;
 	colour = 31;
+	pthread_mutex_lock(&(all()->print_mutex));
+	printf("Current timestamp: %lu\n", get_curr_time());
 	printf("philos: %u\n", all()->philo_num);
 	printf("die: %u\n", all()->time.die);
 	printf("eat: %u\n", all()->time.eat);
@@ -37,12 +39,23 @@ void	print_data(void)
 		if (colour == 37)
 			colour = 31;
 	}
+	pthread_mutex_unlock(&(all()->print_mutex));
 }
 
-void	free_all(void)
+int	free_destroy_all(bool is_fail)
 {
+	unsigned int	i;
+
+	i = 0;
+	while (i < all()->philo_num)
+	{
+		pthread_mutex_destroy(&(all()->fork[i]));
+		i++;
+	}
 	free(all()->philo);
 	free(all()->fork);
+	pthread_mutex_destroy(&(all()->print_mutex));
+	return (is_fail);
 }
 
 t_all	*all(void)
@@ -57,7 +70,7 @@ bool	init_all(void)
 	unsigned int	i;
 
 	all()->philo = malloc(sizeof(t_philo) * (all()->philo_num));
-	all()->fork = malloc(sizeof(unsigned int) * (all()->philo_num));
+	all()->fork = malloc(sizeof(pthread_mutex_t) * (all()->philo_num));
 	if (all()->philo == NULL || all()->fork == NULL)
 		return (true);
 	i = 0;
@@ -67,9 +80,13 @@ bool	init_all(void)
 		all()->philo[i].thread_id = 0;
 		all()->philo[i].left_fork = NULL;
 		all()->philo[i].right_fork = NULL;
-		all()->fork[i] = 0;
+		if (pthread_mutex_init(&(all()->fork[i]), NULL) != 0)
+			return (true);
 		i++;
 	}
+	if (pthread_mutex_init(&(all()->print_mutex), NULL) != 0)
+		return (true);
+	get_curr_time();
 	return (false);
 }
 
@@ -78,12 +95,11 @@ int	main(int argc, char *argv[])
 	if (parser(argc, argv) == true)
 		return (1);
 	if (init_all() == true)
-		return (1);
+		return (free_destroy_all(true));
 	if (create_threads() == true)
-		return (1);
-	//print_data();
+		return (free_destroy_all(true));
+	print_data();
 	if (join_threads() == true)
-		return (1);
-	free_all();
-	return (0);
+		return (free_destroy_all(true));
+	return (free_destroy_all(false));
 }
