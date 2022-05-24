@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:51:42 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/20 14:14:15 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/24 00:45:59 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,15 @@ int	ft_strcmp(const char *s1, const char *s2)
 		i++;
 	}
 	return (0);
+}
+
+void	protected_print(unsigned int philo_num, char *msg, int fork_num)
+{
+	pthread_mutex_lock(&(all()->print_mutex));
+	printf("%lu %u %s", get_curr_time(), philo_num + 1, msg);
+	if (fork_num >= 0)
+		printf(", it is fork number %d\n", fork_num + 1);
+	else
+		printf("\n");
+	pthread_mutex_unlock(&(all()->print_mutex));
 }

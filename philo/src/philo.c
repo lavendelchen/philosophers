@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/23 19:35:24 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/24 02:26:50 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_data(void)
 	while (i < all()->philo_num)
 	{
 		printf("\e[%dm%sPhilosopher %u\e[0m\n", colour, BOLD, i + 1);
-		printf("    has last eaten at %u\n", all()->philo[i].last_eaten_at);
+		printf("    has last eaten at %lu\n", all()->philo[i].last_eaten_at);
 		printf("    has the thread ID %lu\n", all()->philo[i].thread_id);
 		printf("    has the fork at memory address %p in his left hand\n", all()->philo[i].left_fork);
 		printf("    has the fork at memory address %p in his right hand\n", all()->philo[i].right_fork);
@@ -76,8 +76,10 @@ bool	init_all(void)
 	i = 0;
 	while (i < all()->philo_num)
 	{
-		all()->philo[i].last_eaten_at = 0;
+		all()->philo[i].philo_num = i;
 		all()->philo[i].thread_id = 0;
+		all()->philo[i].last_eaten_at = 0;
+		all()->philo[i].times_eaten = 0;
 		all()->philo[i].left_fork = NULL;
 		all()->philo[i].right_fork = NULL;
 		if (pthread_mutex_init(&(all()->fork[i]), NULL) != 0)
@@ -98,7 +100,7 @@ int	main(int argc, char *argv[])
 		return (free_destroy_all(true));
 	if (create_threads() == true)
 		return (free_destroy_all(true));
-	print_data();
+	//print_data();
 	if (join_threads() == true)
 		return (free_destroy_all(true));
 	return (free_destroy_all(false));

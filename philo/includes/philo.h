@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/23 19:19:31 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/24 02:47:06 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ typedef struct s_time
 
 typedef struct s_philo
 {
-	unsigned int	last_eaten_at;
+	unsigned int	philo_num;
 	pthread_t		thread_id;
-	pthread_mutex_t	*left_fork;//do we need?
-	pthread_mutex_t	*right_fork;//do we need?
+	unsigned long	last_eaten_at;
+	unsigned int	times_eaten;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	// state!! so that we can chill while other doesn't have forks
 }				t_philo;
 
 typedef struct s_all
@@ -56,11 +59,14 @@ bool	error_check(int argc, char *argv[]);
 bool	create_threads(void);
 bool	join_threads(void);
 
+void	*routine(void *philo_num_p);
+
 unsigned long	get_curr_time(void);
 
 /*-- UTILS ---*/
 
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);
+void	protected_print(unsigned int philo_num, char *msg, int fork_num);
 
 #endif
