@@ -6,24 +6,22 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:21:33 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/24 02:34:35 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/28 20:35:48 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-bool	join_threads(void)
+void	join_threads(void)
 {
 	unsigned int	i;
 
 	i = 0;
 	while (i < all()->philo_num)
 	{
-		if (pthread_join(all()->philo[i].thread_id, NULL) != 0) // doesn't work, why?
-			return (true);
+		pthread_join(all()->philo[i].thread_id, NULL) // doesn't work, why?
 		i++;
 	}
-	return (false);
 }
 
 bool	create_threads(void)

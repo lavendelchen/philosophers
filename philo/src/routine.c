@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:55:04 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/24 02:46:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/28 22:09:38 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,19 @@ void	slep(unsigned int philo_num)
 	usleep(all()->time.sleep * 1000);
 }
 
+void	sleep_ms(size_t time)
+{
+	size_t starttime = get_curr_time();
+	while (get_curr_time() < starttime + time)
+		usleep(all()->philo_num);
+}
+
 void	eat(unsigned int philo_num)
 {
 	all()->philo[philo_num].last_eaten_at = get_curr_time();
 	protected_print(philo_num, "is eating", -1);
-	usleep(all()->time.eat * 1000);
 	all()->philo[philo_num].times_eaten++;
+	usleep(all()->time.eat * 1000);
 	pthread_mutex_unlock(all()->philo[philo_num].left_fork);
 	pthread_mutex_unlock(all()->philo[philo_num].right_fork);
 	all()->philo[philo_num].left_fork = NULL;
@@ -48,9 +55,9 @@ void	*routine(void *philo_num_p)
 	while (true)
 	{
 		protected_print(philo_num, "is thinking", -1); // handle case of 1 philo
-		if ((philo_num % 2 != 0 && all()->philo[philo_num].times_eaten % 2 != 0) ||
-			(philo_num % 2 == 0 && all()->philo[philo_num].times_eaten % 2 == 0))
-			usleep(all()->time.eat / 2 * 1000); // wie zum fick machen wir das dass die nicht in den death loop kommen
+		//if ((philo_num % 2 != 0 && all()->philo[philo_num].times_eaten % 2 != 0))
+		if (philo_num % 2 == 0)
+			while (all()->philo[philo_num + 1].times_eaten )
 		take_fork(philo_num, philo_num);
 		if (philo_num + 1 == all()->philo_num)
 			take_fork(philo_num, 0);

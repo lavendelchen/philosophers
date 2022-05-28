@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/24 02:47:06 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/28 20:35:57 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	parser(int argc, char *argv[]);
 bool	error_check(int argc, char *argv[]);
 
 bool	create_threads(void);
-bool	join_threads(void);
+void	join_threads(void);
 
 void	*routine(void *philo_num_p);
 
