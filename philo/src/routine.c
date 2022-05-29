@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:55:04 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/24 02:46:14 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/29 19:25:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	*routine(void *philo_num_p)
 	unsigned int	philo_num;
 
 	philo_num = *(unsigned int *)philo_num_p;
+	while (all()->philo[all()->philo_num - 1].thread_id == 0)
+		usleep(all()->philo_num);
 	while (true)
 	{
 		protected_print(philo_num, "is thinking", -1); // handle case of 1 philo
