@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/28 20:40:02 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/29 21:35:36 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ bool	init_all(void)
 {
 	unsigned int	i;
 
+	all()->is_fail = false;
 	all()->philo = malloc(sizeof(t_philo) * (all()->philo_num));
 	all()->fork = malloc(sizeof(pthread_mutex_t) * (all()->philo_num));
 	if (all()->philo == NULL || all()->fork == NULL)
@@ -107,8 +108,8 @@ int	main(int argc, char *argv[])
 	if (init_all() == true)
 		return (free_all());
 	if (create_threads() == true)
-		return (free_destroy_all(true));
+		all()->is_fail = true;
 	//print_data();
 	join_threads();
-	return (free_destroy_all(false));
+	return (free_destroy_all(all()->is_fail));
 }

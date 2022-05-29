@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/28 20:35:57 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/29 21:32:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_all
 	pthread_mutex_t	*fork;
 	unsigned int	stop_after_eat;
 	pthread_mutex_t	print_mutex;
+	bool			is_fail;
 }				t_all;
 
 t_all	*all(void);

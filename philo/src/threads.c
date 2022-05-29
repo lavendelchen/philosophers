@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:21:33 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/28 20:35:48 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/29 20:53:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	join_threads(void)
 	i = 0;
 	while (i < all()->philo_num)
 	{
-		pthread_join(all()->philo[i].thread_id, NULL) // doesn't work, why?
+		if (all()->philo[i].thread_id != 0)
+			pthread_join(all()->philo[i].thread_id, NULL);
 		i++;
 	}
 }
