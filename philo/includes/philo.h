@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/29 21:32:33 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/29 22:55:52 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ typedef struct s_all
 	t_philo			*philo;
 	pthread_mutex_t	*fork;
 	unsigned int	stop_after_eat;
+	pthread_t		death;
 	pthread_mutex_t	print_mutex;
+	bool			someone_died;
 	bool			is_fail;
 }				t_all;
 
@@ -61,10 +63,11 @@ bool	create_threads(void);
 void	join_threads(void);
 
 void	*routine(void *philo_num_p);
+void	*death(void *arg);
 
 unsigned long	get_curr_time(void);
 
-/*-- UTILS ---*/
+/*--- UTILS ---*/
 
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);

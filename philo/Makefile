@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:06:09 by shaas             #+#    #+#              #
-#    Updated: 2022/05/23 23:55:03 by shaas            ###   ########.fr        #
+#    Updated: 2022/05/29 22:56:12 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ DIR_HEADERS =	includes/
 DIR_SRC		=	src/
 DIR_OBJ		=	obj/
 SRC			=	src/philo.c src/parser.c src/utils.c src/error_check.c \
-				src/threads.c src/get_curr_time.c src/routine.c
+				src/threads.c src/get_curr_time.c src/routine.c src/death.c
 OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 
 all:			$(NAME)

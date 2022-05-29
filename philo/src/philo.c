@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:12 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/29 21:35:36 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/29 22:45:10 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ bool	init_all(void)
 {
 	unsigned int	i;
 
+	all()->death = 0;
+	all()->someone_died = false;
 	all()->is_fail = false;
 	all()->philo = malloc(sizeof(t_philo) * (all()->philo_num));
 	all()->fork = malloc(sizeof(pthread_mutex_t) * (all()->philo_num));
