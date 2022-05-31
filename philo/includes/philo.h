@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/29 22:55:52 by shaas            ###   ########.fr       */
+/*   Updated: 2022/05/31 16:08:41 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ unsigned long	get_curr_time(void);
 
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);
-void	protected_print(unsigned int philo_num, char *msg, int fork_num);
+bool	protected_print(unsigned int philo_num, char *msg, int fork_num);
 
 #endif
