@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 14:00:06 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:18:56 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_all
 	bool			is_fail;
 }				t_all;
 
+/*--- PARSING ---*/
 
 bool	parser(int argc, char *argv[]);
 bool	error_check(int argc, char *argv[]);
@@ -82,6 +83,7 @@ void	*death(void *arg);
 
 size_t			ft_strlen(const char *str);
 int				ft_strcmp(const char *s1, const char *s2);
+void			ft_usleep(unsigned long time);
 bool			protected_print(unsigned int philo_num, char *msg, int fork_num);
 unsigned long	get_curr_time(void);
 

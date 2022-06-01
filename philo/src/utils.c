@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:51:42 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/31 16:22:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:18:45 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ int	ft_strcmp(const char *s1, const char *s2)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_usleep(unsigned long time)
+{
+	unsigned long	goaltime;
+
+	goaltime = (get_curr_time() * 1000) + time;
+	while (get_curr_time() * 1000 < goaltime)
+		usleep(all()->philo_num);
 }
 
 bool	protected_print(unsigned int philo_num, char *msg, int fork_num)

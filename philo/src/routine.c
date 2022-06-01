@@ -6,20 +6,11 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:55:04 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 14:06:05 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:19:17 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-void	sleep_ms(size_t time) // maybe use to get more accurate sleeps
-{
-	size_t	starttime;
-
-	starttime = get_curr_time();
-	while (get_curr_time() < starttime + time)
-		usleep(all()->philo_num);
-}
 
 static void	philo_loop(unsigned int philo_num)
 {
@@ -42,9 +33,9 @@ void	*routine(void *philo_num_p)
 	philo_num = *(unsigned int *)philo_num_p;
 	while (all()->philo[all()->philo_num - 1].thread_id == 0
 		&& all()->is_fail == false)
-		usleep(all()->philo_num);
+		ft_usleep(all()->philo_num);
 	if (philo_num % 2 != 0)
-		usleep((all()->time.eat / 2) * 1000);
+		ft_usleep((all()->time.eat / 2) * 1000);
 	philo_loop(philo_num);
 	if (all()->philo[philo_num].left_fork != NULL)
 		pthread_mutex_unlock(all()->philo[philo_num].left_fork);

@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:32:14 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 14:08:17 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:19:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	eat(unsigned int philo_num)
 	if (protected_print(philo_num, "is eating", -1) == true)
 		return (true);
 	all()->philo[philo_num].times_eaten++;
-	usleep(all()->time.eat * 1000);
+	ft_usleep(all()->time.eat * 1000);
 	pthread_mutex_unlock(all()->philo[philo_num].left_fork);
 	pthread_mutex_unlock(all()->philo[philo_num].right_fork);
 	all()->philo[philo_num].left_fork = NULL;
@@ -56,6 +56,6 @@ bool	slep(unsigned int philo_num)
 {
 	if (protected_print(philo_num, "is sleeping", -1) == true)
 		return (true);
-	usleep(all()->time.sleep * 1000);
+	ft_usleep(all()->time.sleep * 1000);
 	return (false);
 }
