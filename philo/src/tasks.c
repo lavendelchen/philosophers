@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:32:14 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 16:53:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 18:58:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,28 @@ bool	take_forks(unsigned int philo_num)
 {
 	bool	so_dead;
 
-	if (philo_num % 2 == 0)
-	{
-		if (take_fork(philo_num, philo_num) == true
-			|| all()->philo_num == 1)
-			return (true);
-		if (philo_num + 1 == all()->philo_num)
-			so_dead = take_fork(philo_num, 0);
-		else
-			so_dead = take_fork(philo_num, philo_num + 1);
-	}
+//	if (philo_num % 2 == 0)
+//	{
+	if (take_fork(philo_num, philo_num) == true
+		|| all()->philo_num == 1)
+		return (true);
+	if (philo_num + 1 == all()->philo_num)
+		so_dead = take_fork(philo_num, 0);
 	else
-	{
-		if (philo_num + 1 == all()->philo_num)
-			so_dead = take_fork(philo_num, 0);
-		else
-			so_dead = take_fork(philo_num, philo_num + 1);
-		if (so_dead == true)
-			return (true);
-		if (take_fork(philo_num, philo_num) == true
-			|| all()->philo_num == 1)
-			return (true);
-	}
+		so_dead = take_fork(philo_num, philo_num + 1);
+//	}
+//	else
+//	{
+//		if (philo_num + 1 == all()->philo_num)
+//			so_dead = take_fork(philo_num, 0);
+//		else
+//			so_dead = take_fork(philo_num, philo_num + 1);
+//		if (so_dead == true)
+//			return (true);
+//		if (take_fork(philo_num, philo_num) == true
+//			|| all()->philo_num == 1)
+//			return (true);
+//	}
 	return (so_dead);
 }
 
@@ -69,6 +69,7 @@ bool	eat(unsigned int philo_num)
 
 bool	slep(unsigned int philo_num)
 {
+	printf("I AM PHILO %d\n", philo_num + 1);
 	if (protected_print(philo_num, "is sleeping", -1) == true)
 		return (true);
 	ft_usleep(all()->time.sleep * 1000);
