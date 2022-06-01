@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:32:14 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 16:19:26 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 16:53:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,28 @@ bool	take_forks(unsigned int philo_num)
 {
 	bool	so_dead;
 
-	if (take_fork(philo_num, philo_num) == true
-		|| all()->philo_num == 1)
-		return (true);
-	if (philo_num + 1 == all()->philo_num)
-		so_dead = take_fork(philo_num, 0);
+	if (philo_num % 2 == 0)
+	{
+		if (take_fork(philo_num, philo_num) == true
+			|| all()->philo_num == 1)
+			return (true);
+		if (philo_num + 1 == all()->philo_num)
+			so_dead = take_fork(philo_num, 0);
+		else
+			so_dead = take_fork(philo_num, philo_num + 1);
+	}
 	else
-		so_dead = take_fork(philo_num, philo_num + 1);
+	{
+		if (philo_num + 1 == all()->philo_num)
+			so_dead = take_fork(philo_num, 0);
+		else
+			so_dead = take_fork(philo_num, philo_num + 1);
+		if (so_dead == true)
+			return (true);
+		if (take_fork(philo_num, philo_num) == true
+			|| all()->philo_num == 1)
+			return (true);
+	}
 	return (so_dead);
 }
 

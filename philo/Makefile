@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:06:09 by shaas             #+#    #+#              #
-#    Updated: 2022/06/01 14:01:43 by shaas            ###   ########.fr        #
+#    Updated: 2022/06/01 17:53:40 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,9 @@ fclean:			clean
 
 re:				fclean all
 
-exec:
-				./$(NAME)
-
-both:			$(NAME) exec
+race:			$(OBJ)
+				@$(CC) $(CC_FLAGS) -fsanitize=thread $(SRC) -o $(NAME)
+				@printf $(GREEN)"Data race test program created\n"$(RESET)
 
 .PHONY:			all clean fclean re
 
