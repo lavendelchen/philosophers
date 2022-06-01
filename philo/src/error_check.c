@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 14:30:23 by shaas             #+#    #+#             */
-/*   Updated: 2022/05/20 14:32:03 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/01 13:50:47 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	parser_error(char *err_msg, short arg_num, bool wrong_usage)
 		printf("\nUsage: %s%s./philo [number_of_philosophers] [time_to_die] \
 [time_to_eat] [time_to_sleep] %s\
 %s(number_of_times_each_philosopher_must_eat)%s\n",
-BOLD, LIGHTBLUE, RESET, LIGHTBLUE, RESET);
+			BOLD, LIGHTBLUE, RESET, LIGHTBLUE, RESET);
 	return (true);
 }
 
@@ -100,7 +100,8 @@ bool	error_check(int argc, char *argv[])
 		if (is_number(argv[i]) == false)
 			is_error = parser_error("Numeric argument required for ", i, false);
 		else if (is_in_range(argv[i]) == false)
-			is_error = parser_error("Argument must be in between 1 and UINT_MAX for ", i, false);
+			is_error = parser_error("Argument must be in between 1 and \
+UINT_MAX for ", i, false);
 		i++;
 	}
 	return (is_error);
