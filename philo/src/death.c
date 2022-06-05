@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 22:04:32 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/03 18:20:33 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/05 13:06:15 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*death(void *arg)
 		while (i < all()->philo_num)
 		{
 			if ((all()->stop_after_eat == 0
-				|| all()->philo[i].times_eaten < all()->stop_after_eat)
+					|| all()->philo[i].times_eaten < all()->stop_after_eat)
 				&& get_curr_time()
 				>= all()->philo[i].last_eaten_at + all()->time.die)
 			{

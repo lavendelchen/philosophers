@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/03 18:19:09 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/05 13:04:06 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_philo
 	unsigned int	times_eaten;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	// state!! so that we can chill while other doesn't have forks
 }				t_philo;
 
 typedef struct s_all
@@ -57,35 +56,36 @@ typedef struct s_all
 
 /*--- PARSING ---*/
 
-bool	parser(int argc, char *argv[]);
-bool	error_check(int argc, char *argv[]);
+bool			parser(int argc, char *argv[]);
+bool			error_check(int argc, char *argv[]);
 
 /*--- MANAGE DATA ---*/
 
-t_all	*all(void);
-bool	init_all(void);
-int		free_destroy_all(bool is_fail);
-int		free_all(void);
+t_all			*all(void);
+bool			init_all(void);
+int				free_destroy_all(bool is_fail);
+int				free_all(void);
 
 /*--- MANAGE THREADS ---*/
 
-bool	create_threads(void);
-void	join_threads(void);
+bool			create_threads(void);
+void			join_threads(void);
 
 /*--- MANAGE PHILOS ---*/
 
-void	*routine(void *philo_num_p);
-bool	take_forks(unsigned int philo_num);
-bool	eat(unsigned int philo_num);
-bool	slep(unsigned int philo_num);
-void	*death(void *arg);
+void			*routine(void *philo_num_p);
+bool			take_forks(unsigned int philo_num);
+bool			eat(unsigned int philo_num);
+bool			slep(unsigned int philo_num);
+void			*death(void *arg);
 
 /*--- UTILS ---*/
 
 size_t			ft_strlen(const char *str);
 int				ft_strcmp(const char *s1, const char *s2);
 void			ft_usleep(unsigned long time);
-bool			protected_print(unsigned int philo_num, char *msg, int fork_num);
+bool			protected_print(unsigned int philo_num, char *msg,
+					int fork_num);
 unsigned long	get_curr_time(void);
 
 #endif
