@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 22:04:32 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 18:43:13 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/03 18:20:33 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void	*death(void *arg)
 	unsigned int	i;
 
 	(void)arg;
-	while (true)
+	while (all()->all_done == false)
 	{
 		i = 0;
 		while (i < all()->philo_num)
 		{
-			if (get_curr_time()
+			if ((all()->stop_after_eat == 0
+				|| all()->philo[i].times_eaten < all()->stop_after_eat)
+				&& get_curr_time()
 				>= all()->philo[i].last_eaten_at + all()->time.die)
 			{
 				protected_print(i, "died", -1);

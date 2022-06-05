@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:06:37 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 18:46:23 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/03 18:19:09 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_all
 	pthread_mutex_t	print_mutex;
 	bool			someone_died;
 	bool			is_fail;
+	bool			all_done;
 }				t_all;
 
 /*--- PARSING ---*/

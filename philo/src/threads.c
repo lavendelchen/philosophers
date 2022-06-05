@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:21:33 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 14:10:16 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/03 18:20:00 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	join_threads(void)
 			pthread_join(all()->philo[i].thread_id, NULL);
 		i++;
 	}
+	all()->all_done = true;
 	if (all()->death != 0)
 		pthread_join(all()->death, NULL);
 }

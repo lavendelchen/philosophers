@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:32:14 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 18:58:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/05 12:42:28 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	take_forks(unsigned int philo_num)
 {
 	bool	so_dead;
 
-//	if (philo_num % 2 == 0)
+	//	if (philo_num % 2 == 0)
 //	{
 	if (take_fork(philo_num, philo_num) == true
 		|| all()->philo_num == 1)
@@ -69,7 +69,6 @@ bool	eat(unsigned int philo_num)
 
 bool	slep(unsigned int philo_num)
 {
-	printf("I AM PHILO %d\n", philo_num + 1);
 	if (protected_print(philo_num, "is sleeping", -1) == true)
 		return (true);
 	ft_usleep(all()->time.sleep * 1000);
