@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 22:04:32 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/05 13:06:15 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/08 19:39:20 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*death(void *arg)
 				&& get_curr_time()
 				>= all()->philo[i].last_eaten_at + all()->time.die)
 			{
-				protected_print(i, "died", -1);
+				protected_print(i, "died");
 				all()->someone_died = true;
 				return (NULL);
 			}

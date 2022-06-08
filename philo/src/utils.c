@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:51:42 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/01 16:18:45 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/08 19:38:34 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_usleep(unsigned long time)
 		usleep(all()->philo_num);
 }
 
-bool	protected_print(unsigned int philo_num, char *msg, int fork_num)
+bool	protected_print(unsigned int philo_num, char *msg)
 {
 	pthread_mutex_lock(&(all()->print_mutex));
 	if (all()->someone_died == true)
@@ -58,11 +58,7 @@ bool	protected_print(unsigned int philo_num, char *msg, int fork_num)
 		pthread_mutex_unlock(&(all()->print_mutex));
 		return (true);
 	}
-	printf("%lu %u %s", get_curr_time(), philo_num + 1, msg);
-	if (fork_num >= 0)
-		printf(", it is fork number %d\n", fork_num + 1);
-	else
-		printf("\n");
+	printf("%lu %u %s\n", get_curr_time(), philo_num + 1, msg);
 	pthread_mutex_unlock(&(all()->print_mutex));
 	return (false);
 }

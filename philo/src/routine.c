@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:55:04 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/03 17:51:34 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/08 19:39:26 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	philo_loop(unsigned int philo_num)
 {
 	while (all()->is_fail == false)
 	{
-		if (protected_print(philo_num, "is thinking", -1) == true
+		if (protected_print(philo_num, "is thinking") == true
 			|| take_forks(philo_num) == true
 			|| eat(philo_num) == true
 			|| (all()->stop_after_eat != 0

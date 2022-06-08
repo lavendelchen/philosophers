@@ -6,7 +6,7 @@
 /*   By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:32:14 by shaas             #+#    #+#             */
-/*   Updated: 2022/06/05 12:42:28 by shaas            ###   ########.fr       */
+/*   Updated: 2022/06/08 19:40:25 by shaas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static bool	take_fork(unsigned int philo_num, unsigned int fork_num)
 		all()->philo[philo_num].left_fork = &(all()->fork[fork_num]);
 	else
 		all()->philo[philo_num].right_fork = &(all()->fork[fork_num]);
-	if (protected_print(philo_num, "has taken a fork", fork_num) == true)
-		return (true); // fork_num for testing
+	if (protected_print(philo_num, "has taken a fork") == true)
+		return (true);
 	return (false);
 }
 
@@ -28,8 +28,6 @@ bool	take_forks(unsigned int philo_num)
 {
 	bool	so_dead;
 
-	//	if (philo_num % 2 == 0)
-//	{
 	if (take_fork(philo_num, philo_num) == true
 		|| all()->philo_num == 1)
 		return (true);
@@ -37,26 +35,13 @@ bool	take_forks(unsigned int philo_num)
 		so_dead = take_fork(philo_num, 0);
 	else
 		so_dead = take_fork(philo_num, philo_num + 1);
-//	}
-//	else
-//	{
-//		if (philo_num + 1 == all()->philo_num)
-//			so_dead = take_fork(philo_num, 0);
-//		else
-//			so_dead = take_fork(philo_num, philo_num + 1);
-//		if (so_dead == true)
-//			return (true);
-//		if (take_fork(philo_num, philo_num) == true
-//			|| all()->philo_num == 1)
-//			return (true);
-//	}
 	return (so_dead);
 }
 
 bool	eat(unsigned int philo_num)
 {
 	all()->philo[philo_num].last_eaten_at = get_curr_time();
-	if (protected_print(philo_num, "is eating", -1) == true)
+	if (protected_print(philo_num, "is eating") == true)
 		return (true);
 	all()->philo[philo_num].times_eaten++;
 	ft_usleep(all()->time.eat * 1000);
@@ -69,7 +54,7 @@ bool	eat(unsigned int philo_num)
 
 bool	slep(unsigned int philo_num)
 {
-	if (protected_print(philo_num, "is sleeping", -1) == true)
+	if (protected_print(philo_num, "is sleeping") == true)
 		return (true);
 	ft_usleep(all()->time.sleep * 1000);
 	return (false);
