@@ -68,3 +68,4 @@ dkms.conf
 
 # specific stuff
 .DS_Store
+*/tester*/*
