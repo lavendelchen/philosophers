@@ -6,7 +6,7 @@
 #    By: shaas <shaas@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:06:09 by shaas             #+#    #+#              #
-#    Updated: 2022/06/01 17:53:40 by shaas            ###   ########.fr        #
+#    Updated: 2022/07/05 21:22:01 by shaas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ			=	$(SRC:$(DIR_SRC)%.c=$(DIR_OBJ)%.o)
 all:			$(NAME)
 
 $(NAME):		$(OBJ)
-				@$(CC) $(CC_FLAGS) $(SRC) -o $(NAME)
+				@$(CC) $(CC_FLAGS) $(OBJ) -o $(NAME)
 				@printf $(CYAN)"$(NAME) created\n"$(RESET)
 
 $(DIR_OBJ)%.o:	$(DIR_SRC)%.c
